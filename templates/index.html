@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OSLabAI | Operating Systems Learning Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">OS</div>
+        <div><h1>OSLabAI</h1><p>Learning Assistant</p></div>
+      </div>
+      <button class="new-chat" id="newChat"><span>＋</span> New conversation</button>
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active" data-section="chat"><span>◉</span> AI Assistant</button>
+      <button class="nav-item" data-section="project"><span>▦</span> Project Overview</button>
+      <button class="nav-item" data-section="metrics"><span>▥</span> Metrics & Testing</button>
+      <button class="nav-item" data-section="implementation"><span>⌘</span> Implementation</button>
+      <div class="sidebar-bottom">
+        <div class="status-dot"></div>
+        <div><strong>Prototype active</strong><small>Rule-based retrieval</small></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div><span class="breadcrumb">Workspace</span><span class="crumb-sep">/</span><strong id="pageTitle">AI Assistant</strong></div>
+        <span class="phase-pill"><span></span> Phase 2 · Tested</span>
+      </header>
+
+      <section class="view active" id="chatView">
+        <div class="welcome">
+          <div class="eyebrow">OPERATING SYSTEMS LAB LEARNING</div>
+          <h2>Learn OS concepts,<br><span>one question at a time.</span></h2>
+          <p>Ask questions from the current knowledge base. Answers are selected using keyword matching and stored course explanations.</p>
+        </div>
+        <div class="suggestion-grid">
+          <button class="suggestion" data-question="What is Round Robin scheduling?"><span class="suggestion-icon purple">↻</span><strong>Round Robin</strong><small>Understand CPU scheduling</small><span class="arrow">↗</span></button>
+          <button class="suggestion" data-question="What is a deadlock?"><span class="suggestion-icon orange">⌁</span><strong>Deadlocks</strong><small>Causes and prevention</small><span class="arrow">↗</span></button>
+          <button class="suggestion" data-question="What is paging?"><span class="suggestion-icon blue">▤</span><strong>Memory management</strong><small>Pages, frames and paging</small><span class="arrow">↗</span></button>
+          <button class="suggestion" data-question="What is the difference between a process and a thread?"><span class="suggestion-icon green">⌘</span><strong>Process vs thread</strong><small>Compare execution units</small><span class="arrow">↗</span></button>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-heading"><div><span class="live-dot"></span><strong>Learning conversation</strong></div><span class="muted">Knowledge-base mode</span></div>
+          <div id="messages" class="messages">
+            <div class="assistant-message">
+              <div class="avatar">OS</div>
+              <div class="message-content"><strong>Welcome to OSLabAI</strong><p>I'm your Operating Systems learning assistant. Ask me about scheduling, deadlocks, memory management, synchronization, file systems, or OS basics.</p></div>
+            </div>
+          </div>
+          <form id="questionForm" class="composer">
+            <input id="questionInput" autocomplete="off" placeholder="Ask an Operating Systems question..." aria-label="Question">
+            <button type="submit" id="sendButton" aria-label="Send question">↑</button>
+          </form>
+          <p class="disclaimer">Responses are generated from the current local knowledge base, not a general-purpose AI model.</p>
+        </div>
+      </section>
+
+      <section class="view" id="projectView">
+        <div class="page-intro"><div class="eyebrow">PROJECT DOCUMENTATION</div><h2>Project overview</h2><p>A lightweight Operating Systems learning assistant built for lab learning and demonstration.</p></div>
+        <div class="info-grid">
+          <article class="info-card wide"><div class="card-icon purple">✦</div><h3>OSLabAI</h3><p class="large-copy">An AI-Powered Assistant for Operating Systems Laboratory Learning</p><p>The current prototype answers OS questions by matching normalized question words against a curated dataset and topic keywords.</p><span class="tag">Current implementation</span></article>
+          <article class="info-card"><div class="card-icon blue">▤</div><h3>Knowledge base</h3><p>Seven topic groups with explanations for scheduling, deadlocks, memory, synchronization, file systems, OS basics, and CPU/process concepts.</p></article>
+          <article class="info-card"><div class="card-icon green">⌁</div><h3>Preprocessing</h3><p>Lowercase conversion, regular-expression tokenization, stop-word filtering, and synonym normalization.</p></article>
+          <article class="info-card"><div class="card-icon orange">⌘</div><h3>Answer selection</h3><p>Topic scores combine content-word matches and weighted keyword matches. Relevant sentences are then selected.</p></article>
+          <article class="info-card"><div class="card-icon purple">◷</div><h3>Local web application</h3><p>A Flask web interface connects the browser to the existing Python question-answering logic.</p></article>
+        </div>
+        <div class="section-heading"><h3>Current project phases</h3><p>Implemented work and planned work are shown separately.</p></div>
+        <div class="phase-list">
+          <div class="phase-row"><span class="phase-check">✓</span><div><strong>Phase 1 · Basic prototype</strong><p>Initial Python question-answering application and OS dataset.</p></div><span class="tag success">Complete</span></div>
+          <div class="phase-row"><span class="phase-check">✓</span><div><strong>Phase 2 · Accuracy improvements</strong><p>Short-query handling, process/thread comparison, topic matching, and manual testing.</p></div><span class="tag success">Tested</span></div>
+          <div class="phase-row future"><span class="phase-number">3</span><div><strong>Phase 3 · Advanced question answering</strong><p>Explore TF-IDF, cosine similarity, semantic search, and stronger confidence handling.</p></div><span class="tag planned">Future work</span></div>
+        </div>
+      </section>
+
+      <section class="view" id="metricsView">
+        <div class="page-intro"><div class="eyebrow">TESTING & EVALUATION</div><h2>Metrics and testing</h2><p>Observed prototype behavior and evaluation limitations.</p></div>
+        <div class="metrics-grid">
+          <article class="metric-card"><span>Knowledge-base topics</span><strong>7</strong><small>Configured topic groups</small></article>
+          <article class="metric-card"><span>Sample response time</span><strong>&lt; 1 ms</strong><small>Observed in two terminal tests; not a benchmark</small></article>
+          <article class="metric-card"><span>Question handling</span><strong>Rule-based</strong><small>Keyword and content matching</small></article>
+          <article class="metric-card"><span>Formal accuracy</span><strong>Not measured</strong><small>Needs a labelled test set</small></article>
+        </div>
+        <div class="table-card"><div class="table-title"><h3>Manual test checklist</h3><span class="tag">Prototype tests</span></div>
+          <div class="test-row table-head"><span>Test question</span><span>Expected behavior</span><span>Status</span></div>
+          <div class="test-row"><span>OS</span><span>Explain operating system</span><span class="test-pass">Passed</span></div>
+          <div class="test-row"><span>Process vs thread</span><span>Return comparison</span><span class="test-pass">Passed</span></div>
+          <div class="test-row"><span>Round Robin scheduling</span><span>Return scheduling explanation</span><span class="test-pass">Passed*</span></div>
+          <div class="test-row"><span>Deadlock / paging</span><span>Return relevant OS explanation</span><span class="test-pass">Passed*</span></div>
+          <div class="test-row"><span>Quantum physics / chemistry</span><span>Reject as outside the OS knowledge base</span><span class="test-pass">Passed*</span></div>
+        </div>
+        <p class="note">*Marked passed based on your reported manual testing. Response time values shown in the terminal are individual observations and should not be treated as a formal performance benchmark. Matching score is not the same as answer accuracy.</p>
+        <div class="section-heading"><h3>Results and discussion</h3></div>
+        <div class="info-card"><p>The current prototype successfully handled the reported OS and process/thread test cases. Earlier issues included short queries, ambiguous topic scores, and misplaced dataset content. The current approach is simple and fast, but keyword overlap can fail when users phrase a question in an unfamiliar way. A larger labelled test set is needed before reporting an accuracy percentage.</p></div>
+      </section>
+
+      <section class="view" id="implementationView">
+        <div class="page-intro"><div class="eyebrow">SYSTEM DESIGN</div><h2>Implementation</h2><p>How a question moves through the current application.</p></div>
+        <div class="flow-card">
+          <div class="flow-step"><span>01</span><div><strong>User question</strong><p>Question entered in the website chat.</p></div></div><div class="flow-line"></div>
+          <div class="flow-step"><span>02</span><div><strong>Preprocessing</strong><p>Lowercase, tokenize, remove stop words, normalize synonyms.</p></div></div><div class="flow-line"></div>
+          <div class="flow-step"><span>03</span><div><strong>Topic scoring</strong><p>Compare question words with dataset content and topic keywords.</p></div></div><div class="flow-line"></div>
+          <div class="flow-step"><span>04</span><div><strong>Sentence selection</strong><p>Choose relevant sentences from the best-matching topic.</p></div></div><div class="flow-line"></div>
+          <div class="flow-step"><span>05</span><div><strong>Answer and metrics</strong><p>Display answer, source topic, matching score, and response time.</p></div></div>
+        </div>
+        <div class="section-heading"><h3>What went wrong</h3></div>
+        <div class="issue-grid">
+          <article class="info-card"><span class="issue-number">01</span><h3>Short query: OS</h3><p>Short abbreviations can be removed by preprocessing or fail to match sentence content.</p><span class="tag success">Addressed</span></article>
+          <article class="info-card"><span class="issue-number">02</span><h3>Process vs thread</h3><p>Both terms occur in multiple topic groups, which can create ambiguous topic scores.</p><span class="tag success">Special case added</span></article>
+          <article class="info-card"><span class="issue-number">03</span><h3>Sentence scoring</h3><p>A misplaced condition could append duplicate or incorrect sentence results.</p><span class="tag success">Corrected</span></article>
+          <article class="info-card"><span class="issue-number">04</span><h3>Keyword limitations</h3><p>Questions with different wording may not share enough words with the stored content.</p><span class="tag planned">Future improvement</span></article>
+        </div>
+        <div class="section-heading"><h3>Alternative flow · Phase 3</h3><p>Proposed only — not implemented in the current prototype.</p></div>
+        <div class="future-banner"><div class="future-symbol">✧</div><div><span class="tag planned">Future work</span><h3>Explore similarity-based retrieval</h3><p>Potential alternative: preprocess the question, calculate TF-IDF vectors, rank stored sentences with cosine similarity, apply a confidence threshold, and return the best-supported answer. Semantic search or an external language model could be evaluated later. These changes require implementation and testing before they can be claimed as completed.</p></div></div>
+      </section>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
