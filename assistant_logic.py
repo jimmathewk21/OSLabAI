@@ -75,6 +75,24 @@ def answer_question(question):
             5
         )
 
+    # Handle questions about concurrent access to shared data.
+    shared_data_terms = {"shared", "data"}
+    concurrency_terms = {"process", "thread", "access"}
+
+    if (
+        shared_data_terms.issubset(question_words)
+        and question_words & concurrency_terms
+    ):
+        answer = (
+            "When multiple processes or threads access shared data, "
+            "their operations may interfere with one another. A race "
+            "condition can occur when the result depends on the timing "
+            "or order of those operations. Process synchronization "
+            "mechanisms such as mutexes and semaphores help coordinate "
+            "access to shared resources."
+        )
+        return answer, "Process Synchronization", 5
+
     topic_scores = {}
 
     for topic, sentences in documents.items():

@@ -58,17 +58,19 @@ function addAssistantMessage(data) {
   const heading = document.createElement("strong");
   heading.textContent = "OSLabAI response";
   const p = document.createElement("p");
-  p.textContent = data.answer;
+  p.innerHTML = DOMPurify.sanitize(
+      marked.parse(data.answer || "")
+  );
   const meta = document.createElement("div");
   meta.className = "message-meta";
   [
-    `Source topic: ${data.topic}`,
-    `Matching score: ${data.score}`,
-    `Response time: ${Number(data.response_time_ms).toFixed(3)} ms`
-  ].forEach(text => {
-    const item = document.createElement("span");
-    item.textContent = text;
-    meta.appendChild(item);
+      `Source topic: ${data.topic}`,
+      `Matching score: ${data.score}`,
+      `Response time: ${Number(data.response_time_ms).toFixed(2)} ms`
+  ].forEach((text) => {
+      const item = document.createElement("span");
+      item.textContent = text;
+      meta.appendChild(item);
   });
   content.append(heading, p, meta);
   row.append(avatar, content);

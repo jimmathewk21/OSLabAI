@@ -1,11 +1,19 @@
+
 from flask import Flask, render_template, request, jsonify
-from assistant_logic import answer_question
+from rag_engine import (
+    get_knowledge_base,
+    retrieve_documents,
+    generate_answer
+)
+import time
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def home():
     return render_template("index.html")
+
 
 @app.route("/ask", methods=["POST"])
 def ask():
@@ -20,9 +28,40 @@ def ask():
             "response_time_ms": 0
         }), 400
 
-    import time
     start = time.perf_counter()
-    answer, topic, score = answer_question(question)
+
+    try:
+        knowledge_base = get_knowledge_base()
+        results = retrieve_documents(question, knowledge_base)
+
+        if not results:
+            return jsonify({
+                "answer": (
+                    "I can only answer questions related to Operating Systems. "
+                    "Please ask an OS-related question."
+                ),
+                "topic": "None",
+                "score": 0,
+                "response_time_ms": round(
+                    (time.perf_counter() - start) * 1000, 3
+                )
+            })
+
+        answer = generate_answer(question, results)
+        topic = results[0]["topic"]
+        score = round(results[0]["score"], 4)
+
+    except Exception:
+        app.logger.exception("Error processing question with RAG")
+        return jsonify({
+            "answer": "Sorry, OSLabAI encountered an error. Please try again.",
+            "topic": "Error",
+            "score": 0,
+            "response_time_ms": round(
+                (time.perf_counter() - start) * 1000, 3
+            )
+        }), 500
+
     elapsed = (time.perf_counter() - start) * 1000
 
     return jsonify({
@@ -31,6 +70,7 @@ def ask():
         "score": score,
         "response_time_ms": round(elapsed, 3)
     })
+
 
 if __name__ == "__main__":
     app.run(debug=True)

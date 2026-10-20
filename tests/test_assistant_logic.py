@@ -52,5 +52,26 @@ class TestOSLabAI(unittest.TestCase):
         self.assertIn("no relevant os topic found", answer.lower())
 
 
+    def test_processes_waiting_for_each_other(self):
+        answer, topic, score = answer_question(
+            "Why can processes wait forever for resources held by each other?"
+        )
+        self.assertEqual(topic, "Deadlocks")
+        self.assertIn("deadlock", answer.lower())
+
+    def test_ram_divided_into_pages_and_frames(self):
+        answer, topic, score = answer_question(
+            "How does paging divide memory into pages and frames?"
+        )
+        self.assertEqual(topic, "Memory Management")
+        self.assertIn("page", answer.lower())
+        self.assertIn("frame", answer.lower())
+
+    def test_shared_data_access(self):
+        answer, topic, score = answer_question(
+            "What happens when two processes access shared data together?"
+        )
+        self.assertEqual(topic, "Process Synchronization")
+        self.assertIn("race condition", answer.lower())
 if __name__ == "__main__":
     unittest.main()

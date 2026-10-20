@@ -1,7 +1,8 @@
-
 .venv/
 venv/
 __pycache__/
 *.py[cod]
 .env
 .vscode/
+knowledge_base.json
+knowledge_base.tmp
