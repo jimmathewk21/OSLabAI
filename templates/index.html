@@ -135,7 +135,6 @@
 
         <!-- AI ASSISTANT -->
         <section class="view active" id="chatView">
-
             <div class="welcome">
                 <div class="eyebrow">OPERATING SYSTEMS LAB LEARNING</div>
                 <h2>Learn OS concepts,<br>
@@ -250,79 +249,145 @@
             </div>
         </section>
 
+
         <!-- PROJECT OVERVIEW -->
         <section class="view" id="projectView">
 
             <div class="page-intro">
                 <div class="eyebrow">PROJECT DOCUMENTATION</div>
-                <h2>Project overview</h2>
+                <h2>Project Overview</h2>
                 <p>
-                    A lightweight Operating Systems learning assistant
-                    built for lab learning and demonstration.
+                    OSLabAI is a local AI-powered learning assistant that helps
+                    students understand Operating Systems concepts through
+                    knowledge retrieval and generated explanations.
                 </p>
             </div>
 
-            <div class="info-grid">
+            <div class="overview-hero">
+                <div class="overview-hero-icon">OS</div>
+                <div>
+                    <span class="tag">Operating Systems Lab Project</span>
+                    <h3>Learn. Ask. Understand.</h3>
+                    <p>
+                        Ask questions in natural language and receive explanations
+                        grounded in a curated Operating Systems knowledge base.
+                    </p>
+                </div>
+            </div>
 
-                <article class="info-card wide">
-                    <div class="card-icon purple">✦</div>
-                    <h3>OSLabAI</h3>
-                    <p class="large-copy">
-                        An AI-Powered Assistant for Operating Systems Laboratory Learning
+            <div class="section-heading">
+                <h3>Project at a glance</h3>
+                <p>The main components of the current prototype.</p>
+            </div>
+
+            <div class="overview-stats">
+
+                <article class="overview-stat">
+                    <span class="stat-icon purple">▤</span>
+                    <span class="stat-label">Knowledge passages</span>
+                    <strong>73</strong>
+                    <small>Current dataset</small>
+                </article>
+
+                <article class="overview-stat">
+                    <span class="stat-icon blue">⌕</span>
+                    <span class="stat-label">Retrieval</span>
+                    <strong>Semantic</strong>
+                    <small>Embedding similarity</small>
+                </article>
+
+                <article class="overview-stat">
+                    <span class="stat-icon green">✧</span>
+                    <span class="stat-label">Answer generation</span>
+                    <strong>Local LLM</strong>
+                    <small>Llama 3.2 · 3B</small>
+                </article>
+
+                <article class="overview-stat">
+                    <span class="stat-icon orange">⌘</span>
+                    <span class="stat-label">Web framework</span>
+                    <strong>Flask</strong>
+                    <small>Python backend</small>
+                </article>
+
+            </div>
+
+            <div class="overview-columns">
+
+                <article class="info-card">
+                    <div class="card-icon purple">◎</div>
+                    <h3>Problem statement</h3>
+                    <p>
+                        Students often need quick, understandable explanations
+                        of Operating Systems concepts while learning and
+                        completing laboratory work.
                     </p>
                     <p>
-                        The application retrieves relevant passages from a
-                        curated OS knowledge base and generates answers using
-                        a local language model.
+                        OSLabAI provides a conversational interface that retrieves
+                        related course knowledge and uses it to formulate answers.
                     </p>
-                    <span class="tag">Current implementation</span>
                 </article>
 
                 <article class="info-card">
-                    <div class="card-icon blue">▤</div>
-                    <h3>Knowledge base</h3>
-                    <p>
-                        Seven topic groups covering scheduling, deadlocks,
-                        memory, synchronization, file systems, OS basics,
-                        and CPU/process concepts.
-                    </p>
-                </article>
-
-                <article class="info-card">
-                    <div class="card-icon green">⌁</div>
-                    <h3>Preprocessing and retrieval</h3>
-                    <p>
-                        Text embeddings and cosine similarity identify
-                        passages relevant to a student's question.
-                    </p>
-                </article>
-
-                <article class="info-card">
-                    <div class="card-icon orange">⌘</div>
-                    <h3>Answer generation</h3>
-                    <p>
-                        A local language model generates explanations using
-                        retrieved knowledge-base passages.
-                    </p>
-                </article>
-
-                <article class="info-card">
-                    <div class="card-icon purple">◷</div>
-                    <h3>Local web application</h3>
-                    <p>
-                        A Flask web interface connects the browser to the
-                        Python retrieval and answer-generation pipeline.
-                    </p>
+                    <div class="card-icon blue">✦</div>
+                    <h3>Project objectives</h3>
+                    <ul class="feature-list">
+                        <li>Answer OS questions in natural language.</li>
+                        <li>Retrieve relevant passages from the local dataset.</li>
+                        <li>Generate explanations using retrieved context.</li>
+                        <li>Reject questions whose best match is below the configured threshold.</li>
+                        <li>Run the language model locally through Ollama.</li>
+                    </ul>
                 </article>
 
             </div>
 
             <div class="section-heading">
-                <h3>Current project phases</h3>
-                <p>Implemented work and planned work are shown separately.</p>
+                <h3>Technology stack</h3>
+                <p>Tools currently used by the application.</p>
+            </div>
+
+            <div class="tech-grid">
+
+                <article class="tech-card">
+                    <strong>Python</strong>
+                    <span>Application logic</span>
+                </article>
+
+                <article class="tech-card">
+                    <strong>Flask</strong>
+                    <span>Web server and API</span>
+                </article>
+
+                <article class="tech-card">
+                    <strong>Ollama</strong>
+                    <span>Local model runtime</span>
+                </article>
+
+                <article class="tech-card">
+                    <strong>nomic-embed-text</strong>
+                    <span>Text embeddings</span>
+                </article>
+
+                <article class="tech-card">
+                    <strong>Llama 3.2 · 3B</strong>
+                    <span>Answer generation</span>
+                </article>
+
+                <article class="tech-card">
+                    <strong>HTML, CSS, JavaScript</strong>
+                    <span>Chat interface</span>
+                </article>
+
+            </div>
+
+            <div class="section-heading">
+                <h3>Project phases</h3>
+                <p>Current implementation and planned work.</p>
             </div>
 
             <div class="phase-list">
+
                 <div class="phase-row">
                     <span class="phase-check">✓</span>
                     <div>
@@ -336,7 +401,7 @@
                     <span class="phase-check">✓</span>
                     <div>
                         <strong>Phase 2 · Retrieval improvements</strong>
-                        <p>Semantic search, relevance filtering, and answer generation.</p>
+                        <p>Semantic search, relevance filtering, and local answer generation.</p>
                     </div>
                     <span class="tag success">Implemented</span>
                 </div>
@@ -349,8 +414,11 @@
                     </div>
                     <span class="tag planned">Future work</span>
                 </div>
+
             </div>
+
         </section>
+
 
         <!-- METRICS AND TESTING -->
         <section class="view" id="metricsView">
