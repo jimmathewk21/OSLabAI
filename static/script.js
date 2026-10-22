@@ -20,6 +20,9 @@ function showSection(name) {
     button.classList.toggle("active", button.dataset.section === name);
   });
   document.getElementById("pageTitle").textContent = titles[name] || "AI Assistant";
+  if (name === "metrics") {
+    loadMetrics();
+  }
 }
 
 document.querySelectorAll(".nav-item").forEach(button => {
@@ -137,3 +140,35 @@ document.getElementById("newChat").addEventListener("click", () => {
   showSection("chat");
   input.focus();
 });
+async function loadMetrics() {
+    try {
+        const response = await fetch("/metrics");
+
+        if (!response.ok) {
+            throw new Error("Failed to load metrics");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("metricPassages").textContent =
+            data.knowledge_base_passages;
+
+        document.getElementById("metricTotalQuestions").textContent =
+            data.total_questions;
+
+        document.getElementById("metricAnswered").textContent =
+            data.answered_questions;
+
+        document.getElementById("metricRejected").textContent =
+            data.rejected_questions;
+
+        document.getElementById("metricFailed").textContent =
+            data.failed_requests;
+
+        document.getElementById("metricResponseTime").textContent =
+            `${data.average_response_time_ms} ms`;
+
+    } catch (error) {
+        console.error("Unable to update dashboard metrics:", error);
+    }
+}

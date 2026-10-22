@@ -431,27 +431,39 @@
 
             <div class="metrics-grid">
                 <article class="metric-card">
-                    <span>Knowledge-base topics</span>
-                    <strong>7</strong>
-                    <small>Configured topic groups</small>
+                    <span>Knowledge-base passages</span>
+                    <strong id="metricPassages">73</strong>
+                    <small>Loaded OS documents</small>
                 </article>
 
                 <article class="metric-card">
-                    <span>Embedding model</span>
-                    <strong>Local</strong>
-                    <small>nomic-embed-text</small>
+                    <span>Total questions</span>
+                    <strong id="metricTotalQuestions">0</strong>
+                    <small>Since server start</small>
                 </article>
 
                 <article class="metric-card">
-                    <span>Generation model</span>
-                    <strong>3B</strong>
-                    <small>Llama 3.2</small>
+                    <span>Answered questions</span>
+                    <strong id="metricAnswered">0</strong>
+                    <small>Successfully answered</small>
                 </article>
 
                 <article class="metric-card">
-                    <span>Formal accuracy</span>
-                    <strong>Not measured</strong>
-                    <small>Requires a labelled test set</small>
+                    <span>Rejected questions</span>
+                    <strong id="metricRejected">0</strong>
+                    <small>Out-of-scope or unmatched</small>
+                </article>
+
+                <article class="metric-card">
+                    <span>Failed requests</span>
+                    <strong id="metricFailed">0</strong>
+                    <small>Requests that encountered errors</small>
+                </article>
+
+                <article class="metric-card">
+                    <span>Average response time</span>
+                    <strong id="metricResponseTime">0 ms</strong>
+                    <small>Across recorded questions</small>
                 </article>
             </div>
 
