@@ -155,11 +155,10 @@ Expand and review the OS knowledge base; add answer feedback and source previews
 
 ## Authors
 
-- **Vignesh Ekambaram** — 24BCE0651
-- **Jim Mathew K** — 24BCE0493
+- **Vignesh Ekambaram**
+- **Jim Mathew K**
 
 **Course:** BCSE303P — Operating Systems Lab  
-**Faculty:** Dr. JAGALINGAM P  
 **Institution:** Vellore Institute of Technology, Vellore  
 **Academic Year:** 2026–2027
 
